@@ -27,5 +27,6 @@ android {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:2.0.21")
 }

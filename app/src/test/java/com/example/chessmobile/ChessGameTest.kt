@@ -1,18 +1,18 @@
 package com.example.chessmobile
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
-import kotlin.test.assertFalse
+import org.junit.Test
+import org.junit.Assert.*
 
 class ChessGameTest {
-    @Test fun whitePawnCanOpenTwoSquares() {
+    @Test
+    fun whitePawnCanOpenTwoSquares() {
         val game = ChessGame()
         assertTrue(game.move(Move(6, 4, 4, 4)))
         assertEquals(Side.BLACK, game.turn)
     }
 
-    @Test fun cannotMoveIntoCheck() {
+    @Test
+    fun cannotMoveIntoCheck() {
         val game = ChessGame()
         // Clear pieces around King to setup a check scenario
         game.board[6][4] = null // e2
@@ -24,7 +24,8 @@ class ChessGameTest {
         assertFalse(game.move(Move(7, 4, 6, 4)))
     }
 
-    @Test fun checkmateDetection() {
+    @Test
+    fun checkmateDetection() {
         val game = ChessGame()
         // Fool's Mate setup
         game.move(Move(6, 5, 5, 5)) // f3
