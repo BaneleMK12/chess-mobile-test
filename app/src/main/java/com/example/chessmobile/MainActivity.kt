@@ -26,7 +26,7 @@ class MainActivity : Activity() {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.CENTER_HORIZONTAL
             setPadding(32, 32, 32, 32)
-            backgroundColor = Color.rgb(240, 240, 240)
+            setBackgroundColor(Color.rgb(240, 240, 240))
         }
         
         status = TextView(this).apply {
@@ -45,7 +45,7 @@ class MainActivity : Activity() {
             rowCount = 8
             columnCount = 8
             useDefaultMargins = false
-            backgroundColor = Color.rgb(33, 33, 33)
+            setBackgroundColor(Color.rgb(33, 33, 33))
         }
         
         for (r in 0..7) for (c in 0..7) {
