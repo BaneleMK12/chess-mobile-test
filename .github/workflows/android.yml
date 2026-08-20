@@ -40,8 +40,11 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.13
-      - name: Build debug APK
-        run: gradle assembleDebug
+      - name: Download APK
+        uses: actions/download-artifact@v4
+        with:
+          name: kotlin-chess-debug-apk
+          path: app/build/outputs/apk/debug/
       - name: Install and launch on Android emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
@@ -49,6 +52,12 @@ jobs:
           target: google_apis
           arch: x86_64
           script: |
+            # Wait for the system to be fully ready
+            adb wait-for-device
+            while [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" != "1" ]; do
+              echo "Waiting for emulator boot..."
+              sleep 2
+            done
             adb install -r app/build/outputs/apk/debug/app-debug.apk
             adb shell monkey -p com.example.chessmobile 1
             adb shell pidof com.example.chessmobile
